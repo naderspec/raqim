@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+    --accent-color: #001BAB;
+    --black-color: #111111;
+    --white-color: #F9FAFB;
+
+    --gradient-blue: linear-gradient(to right, #001bab, #000b45);
+
+    --font-bold: 700;
+    --font-ultrabold: 800;
+    --font-size-36: 36px;
+    --font-size-64: 64px;
+    --font-size-medium: 24px;
+    --font-size-small: 20px;
+    --line-height-1: 160%;
+
+
+    --radius-10: 10px;
+}
+
+.container {
+    max-width: 1440px;
+    height: 100vh;
+    margin-inline: auto;
+    padding-inline: 120px;
+    background: #333;
+}
+

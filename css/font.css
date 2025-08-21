@@ -1,0 +1,44 @@
+/* Rokh Regular */
+@font-face {
+  font-family: "Rokh";
+  src: url("../assets/fonts/Rokh-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rokh Medium */
+@font-face {
+  font-family: "Rokh";
+  src: url("../assets/fonts/Rokh-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rokh SemiBold */
+@font-face {
+  font-family: "Rokh";
+  src: url("../assets/fonts/Rokh-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rokh Bold */
+@font-face {
+  font-family: "Rokh";
+  src: url("../assets/fonts/Rokh-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Rokh UltraBold */
+@font-face {
+  font-family: "Rokh";
+  src: url("../assets/fonts/Rokh-UltraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
