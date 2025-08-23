@@ -1,17 +1,63 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Raqim Digital Marketing</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/font.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+  </head>
 
-    <div class="container">
-        
-    </div>
+  <body>
+    <header class="Header">
+      <nav>
+        <a href="#" class="navlinks active">صفحه اصلی</a>
+        <a href="#" class="navlinks">خدمات</a>
+        <a href="#" class="navlinks">نمونه کارها</a>
+        <a href="#" class="navlinks">درباره ما</a>
+        <div class="active-bg"></div>
+      </nav>
+      <img class="menu-icon" src="./assets/Menu-icon.svg" alt="" />
 
-    <script src="js/main.js"></script>
-</body>
+      <div class="header-content">
+        <div class="header-notif">
+          <img src="./assets/raqim2.svg" alt="" />
+          <p>شرکت دیجیتال مارکیتینگ رقیم</p>
+        </div>
+
+        <h1>
+          کسب و کارتان را از یک نام ساده به برندی <span>قدرتمند</span> می
+          رسانیم.
+        </h1>
+
+        <div class="header-buttons">
+          <button class="active">تماس بگیرید</button>
+          <button>خدمات ما</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="image-gallery">
+      <div class="slider">
+        <div class="slide"><img src="./assets/img-1.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-2.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-3.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-4.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-5.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-1.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-2.png" alt="" /></div>
+        <div class="slide"><img src="./assets/img-3.png" alt="" /></div>
+      </div>
+    </section>
+
+    <section class="empty"></section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>
