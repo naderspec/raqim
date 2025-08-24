@@ -10,33 +10,59 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <header class="Header">
+    <header class="Header" id="home">
       <nav>
-        <a href="#" class="navlinks active">صفحه اصلی</a>
-        <a href="#" class="navlinks">خدمات</a>
-        <a href="#" class="navlinks">نمونه کارها</a>
-        <a href="#" class="navlinks">درباره ما</a>
+        <a href="#home" data-target="home" class="navlinks active">صفحه اصلی</a>
+        <a href="#service" data-target="service" class="navlinks">خدمات</a>
+        <a href="#portfolio" data-target="portfolio" class="navlinks"
+          >نمونه کارها</a
+        >
+        <a href="#about" data-target="about" class="navlinks">درباره ما</a>
         <div class="active-bg"></div>
       </nav>
       <img class="menu-icon" src="./assets/Menu-icon.svg" alt="" />
 
       <div class="header-content">
-        <div class="header-notif">
+        <div class="header-notif" data-aos="fade-left" data-aos-once="false">
           <img src="./assets/raqim2.svg" alt="" />
-          <p>شرکت دیجیتال مارکیتینگ رقیم</p>
+          <p data-aos="fade-left" data-aos-once="false">
+            شرکت دیجیتال مارکیتینگ رقیم
+          </p>
         </div>
 
-        <h1>
+        <h1
+          data-aos="zoom-out-right"
+          data-aos-duration="600"
+          data-aos-once="false"
+        >
           کسب و کارتان را از یک نام ساده به برندی <span>قدرتمند</span> می
           رسانیم.
         </h1>
 
         <div class="header-buttons">
-          <button class="active">تماس بگیرید</button>
-          <button>خدمات ما</button>
+          <button
+            class="active"
+            data-aos="fade-down-right"
+            data-aos-duration="800"
+            data-aos-once="false"
+          >
+            تماس بگیرید
+          </button>
+          <button
+            data-aos="fade-down-left"
+            data-aos-duration="1000"
+            data-aos-once="false"
+          >
+            خدمات ما
+          </button>
         </div>
       </div>
     </header>
@@ -54,7 +80,183 @@
       </div>
     </section>
 
+    <section
+      class="about"
+      id="about"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+      data-aos-once="false"
+    >
+      <div class="about-content contain">
+        <img src="./assets/circle-radius-1.svg" alt="" class="circle" />
+
+        <div
+          class="about-text"
+          data-aos="fade-up"
+          data-aos-anchor-placement="top-bottom"
+          data-aos-duration="1500"
+        >
+          <div
+            class="about-title"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="false"
+          >
+            <img src="./assets/question-mark.svg" alt="" />
+            <h1>ما کی هستیم؟</h1>
+          </div>
+          <div class="about-content-p">
+            <p>
+              ما در رقیم باور داریم که تجربه، دانش و نوآوری کلید رشد پایدار هر
+              کسب‌وکار است. از سال ۲۰۱۸ تا امروز، با بیش از صدها پروژه موفق و
+              همکاری با برندهای ملی و بین‌المللی، نشان داده‌ایم که بازاریابی
+              تنها تبلیغ نیست؛ بلکه هنر ایجاد اعتماد، ارتباط و فروش پایدار است.
+              ما اینجاییم تا مسیر دشوار رقابت را برای شما هموار کنیم و در کنار
+              شما شریک واقعی موفقیت باشیم
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="about-image"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-once="false"
+        >
+          <img src="./assets/img-6.png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="service" id="service">
+      <div class="service-content contain">
+        <img src="./assets/circle-radius-1.svg" alt="" class="circle2" />
+
+        <div class="service-text">
+          <div class="service-title">
+            <img src="./assets/service.svg" alt="" />
+            <h1>خدمات ما</h1>
+          </div>
+
+          <div class="service-content-p">
+            <p>
+              در رقیم، خدمات بازاریابی دیجیتال ما برای یک هدف طراحی شده‌اند: رشد
+              واقعی کسب‌وکار شما.
+            </p>
+          </div>
+        </div>
+
+        <div class="service-options">
+          <div
+            class="service-box"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="false"
+          >
+            <img src="./assets/managing.svg" alt="" />
+            <h3>مدیریت شبکه‌های اجتماعی</h3>
+            <p>حضور حرفه‌ای و مؤثر در شبکه‌های اجتماعی</p>
+          </div>
+          <div
+            class="service-box"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="false"
+          >
+            <img src="./assets/website.svg" alt="" />
+            <h3>طراحی وبسایت و سئو</h3>
+            <p>وبسایت های مدرن با رتبه بالا در گوگل</p>
+          </div>
+          <div
+            class="service-box"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="false"
+          >
+            <img src="./assets/promote.svg" alt="" />
+            <h3>تبلیغات آنلاین و پروموت</h3>
+            <p>هدفمند، داده محور و نتیجه گرا</p>
+          </div>
+          <div
+            class="service-box"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-once="false"
+          >
+            <img src="./assets/branding.svg" alt="" />
+            <h3>برندینگ و مشاوره</h3>
+            <p>ساخت هویت ماندگار برای کسب‌وکار شما</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-us" id="why-us">
+      <div class="why-us-content contain">
+        <div class="why-us-header">
+          <div class="why-us-text">
+            <img src="./assets/why-us.svg" alt="" />
+            <h1>چرا ما؟</h1>
+          </div>
+
+          <div class="why-us-p">
+            <p>
+              ما تنها پایگاه مارکیتینگ نیستیم، ما شریک استراتژیک شما در مسیر
+              موفقیت هستیم.
+            </p>
+          </div>
+        </div>
+
+        <div class="why-us-num">
+          <div class="num-circle-1"></div>
+          <div class="num-circle-2"></div>
+          <div class="num-circle-3"></div>
+          <div class="num-circle-4"></div>
+          <div class="num-circle-5"></div>
+          <div class="num-circle-6"></div>
+          <div class="num-box">
+            <h1>400+</h1>
+            <p>قرارداد همکاری موفق</p>
+          </div>
+          <div class="num-box">
+            <h1>125+</h1>
+            <p>مشتری خوشحال و راضی</p>
+          </div>
+          <div class="num-box">
+            <h1>90%</h1>
+            <p>پروژه های تکمیل شده</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="empty"></section>
+
+    <!-- scripts  -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      AOS.init({
+        once: false,
+      });
+
+      const navLinks = document.querySelectorAll("nav a[data-target]");
+
+      navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const targetId = link.getAttribute("data-target");
+          const targetSection = document.getElementById(targetId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: "smooth" });
+
+            AOS.refreshHard();
+          }
+        });
+      });
+    </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>

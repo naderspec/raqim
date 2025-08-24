@@ -1,4 +1,5 @@
 import anime from 'https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.es.js';
+// import { animate, utils, createDraggable, createSpring } from 'animejs';
 
 const navLinks = document.querySelectorAll(".navlinks");
 const activeBg = document.querySelector(".active-bg");
@@ -7,7 +8,6 @@ function moveActiveBg(link) {
   const linkStyles = window.getComputedStyle(link);
   const offsetLeft = link.offsetLeft - parseFloat(linkStyles.marginLeft);
   const offsetWidth = link.offsetWidth;
-  const offsetHeight = link.offsetHeight
 
   anime({
     targets: activeBg,
@@ -64,3 +64,4 @@ const slider = document.querySelector(".slider");
       x: gsap.utils.unitize(x => parseFloat(x) % totalWidth * -1)
     }
   });
+
