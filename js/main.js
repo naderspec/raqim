@@ -5,17 +5,32 @@ const navLinks = document.querySelectorAll(".navlinks");
 const activeBg = document.querySelector(".active-bg");
 
 function moveActiveBg(link) {
-  const linkStyles = window.getComputedStyle(link);
-  const offsetLeft = link.offsetLeft - parseFloat(linkStyles.marginLeft);
-  const offsetWidth = link.offsetWidth;
 
-  anime({
-    targets: activeBg,
-    left: offsetLeft,
-    width: offsetWidth,
-    duration: 400,
-    easing: 'easeOutQuad'
+  requestAnimationFrame(() => {
+    const linkStyles = window.getComputedStyle(link);
+    const offsetLeft = link.offsetLeft - parseFloat(linkStyles.marginLeft);
+    const offsetWidth = link.offsetWidth;
+    
+    anime({
+      targets: activeBg,
+      left: offsetLeft,
+      width: offsetWidth,
+      duration: 400,
+      easing: 'easeOutQuad'
+    });
   });
+}
+
+
+let resizeTimeout;
+function handleResize() {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    const activeLink = document.querySelector(".navlinks.active");
+    if (activeLink) {
+      moveActiveBg(activeLink);
+    }
+  }, 100);
 }
 
 navLinks.forEach(link => {
@@ -26,9 +41,21 @@ navLinks.forEach(link => {
   });
 });
 
-const activeLink = document.querySelector(".navlinks.active");
-if (activeLink) moveActiveBg(activeLink);
 
+function initializeActiveBg() {
+  const activeLink = document.querySelector(".navlinks.active");
+  if (activeLink) {
+    moveActiveBg(activeLink);
+  }
+}
+
+
+document.addEventListener('DOMContentLoaded', initializeActiveBg);
+window.addEventListener('load', initializeActiveBg);
+window.addEventListener('resize', handleResize);
+
+
+setTimeout(initializeActiveBg, 100);
 
 // mobile 
 
