@@ -1,3 +1,222 @@
+// JavaScript - Add this to your script
+
+class CreativeLoader {
+    constructor() {
+        this.loader = document.querySelector('.loader');
+        this.mainContent = document.querySelector('.main-content');
+        this.progressBar = document.querySelector('.progress-bar');
+        this.loaderText = document.querySelector('.loader-text');
+        this.particles = [];
+        this.isLoaded = false;
+        
+        this.init();
+    }
+    
+    init() {
+        // Create floating particles
+        this.createParticles();
+        
+        // Simulate loading progress
+        this.simulateLoading();
+        
+        // Listen for actual page load
+        this.setupPageLoadListeners();
+        
+        // Add some interactive text effects
+        this.animateText();
+    }
+    
+    createParticles() {
+        const particleCount = 15;
+        
+        for (let i = 0; i < particleCount; i++) {
+            setTimeout(() => {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size and position
+                const size = Math.random() * 6 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay and duration
+                particle.style.animationDelay = Math.random() * 3 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                
+                this.loader.appendChild(particle);
+                this.particles.push(particle);
+            }, i * 200);
+        }
+    }
+    
+    simulateLoading() {
+        const loadingSteps = [
+            { text: 'Loading', delay: 0 },
+            { text: 'Initializing', delay: 1000 },
+            { text: 'Loading Assets', delay: 2000 },
+            { text: 'Almost Ready', delay: 2800 },
+            { text: 'Complete', delay: 3500 }
+        ];
+        
+        loadingSteps.forEach((step, index) => {
+            setTimeout(() => {
+                this.updateLoadingText(step.text);
+                
+                if (index === loadingSteps.length - 1) {
+                    setTimeout(() => {
+                        this.hideLoader();
+                    }, 500);
+                }
+            }, step.delay);
+        });
+    }
+    
+    updateLoadingText(text) {
+        this.loaderText.style.transform = 'translateY(-10px)';
+        this.loaderText.style.opacity = '0';
+        
+        setTimeout(() => {
+            this.loaderText.textContent = text;
+            this.loaderText.style.transform = 'translateY(0)';
+            this.loaderText.style.opacity = '1';
+        }, 200);
+    }
+    
+    setupPageLoadListeners() {
+        // Ensure minimum loading time for effect
+        const minLoadTime = 3000;
+        const startTime = Date.now();
+        
+        const checkComplete = () => {
+            const elapsed = Date.now() - startTime;
+            const remaining = minLoadTime - elapsed;
+            
+            if (remaining > 0) {
+                setTimeout(() => {
+                    if (document.readyState === 'complete' && !this.isLoaded) {
+                        this.hideLoader();
+                    }
+                }, remaining);
+            } else {
+                if (document.readyState === 'complete' && !this.isLoaded) {
+                    this.hideLoader();
+                }
+            }
+        };
+        
+        if (document.readyState === 'complete') {
+            checkComplete();
+        } else {
+            window.addEventListener('load', checkComplete);
+        }
+    }
+    
+    animateText() {
+        const letters = this.loaderText.textContent.split('');
+        this.loaderText.innerHTML = letters.map((letter, index) => 
+            `<span style="display: inline-block; animation-delay: ${index * 0.1}s; animation: letterPulse 2s ease-in-out infinite;">${letter}</span>`
+        ).join('');
+    }
+    
+    hideLoader() {
+        if (this.isLoaded) return;
+        this.isLoaded = true;
+        
+        // Start exit animations
+        this.loader.classList.add('fade-out');
+        
+        // Animate particles out
+        this.particles.forEach((particle, index) => {
+            setTimeout(() => {
+                particle.style.animation = 'float 0.5s ease-out forwards';
+                particle.style.transform = 'translateY(-100px) scale(0)';
+                particle.style.opacity = '0';
+            }, index * 50);
+        });
+        
+        setTimeout(() => {
+            this.loader.classList.add('slide-up');
+        }, 600);
+        
+        setTimeout(() => {
+            this.loader.style.display = 'none';
+            this.showMainContent();
+        }, 1400);
+    }
+    
+    showMainContent() {
+        // Reveal main content with stagger animation
+        if (this.mainContent) {
+            this.mainContent.classList.add('show');
+        }
+        
+        // Animate feature cards or any elements with class 'animate-in'
+        const animateElements = document.querySelectorAll('.animate-in, .feature-card');
+        animateElements.forEach((element, index) => {
+            setTimeout(() => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'all 0.6s ease';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 100);
+            }, index * 200);
+        });
+        
+        // Add scroll reveal effect
+        this.setupScrollAnimations();
+    }
+    
+    setupScrollAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.scroll-animate').forEach(element => {
+            observer.observe(element);
+        });
+    }
+}
+
+// Initialize loader when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    new CreativeLoader();
+});
+
+// Add mouse interactivity to loader circles
+document.addEventListener('mousemove', (e) => {
+    const loader = document.querySelector('.loader');
+    if (loader && loader.style.display !== 'none') {
+        const circles = document.querySelectorAll('.circle');
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+        
+        circles.forEach((circle, index) => {
+            const speed = (index + 1) * 0.5;
+            const x = (mouseX - 0.5) * speed;
+            const y = (mouseY - 0.5) * speed;
+            const currentTransform = circle.style.transform || '';
+            const rotateMatch = currentTransform.match(/rotate\([^)]+\)/);
+            const rotate = rotateMatch ? rotateMatch[0] : 'rotate(0deg)';
+            circle.style.transform = `translate(${x}px, ${y}px) ${rotate}`;
+        });
+    }
+});
+
+
 // import anime from 'https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.es.js';
 // import { animate, utils, createDraggable, createSpring } from 'animejs';
 
