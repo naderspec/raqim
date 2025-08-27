@@ -1,4 +1,3 @@
-// JavaScript - Add this to your script
 
 class CreativeLoader {
     constructor() {
@@ -13,16 +12,15 @@ class CreativeLoader {
     }
     
     init() {
-        // Create floating particles
+
         this.createParticles();
         
-        // Simulate loading progress
+
         this.simulateLoading();
-        
-        // Listen for actual page load
+
         this.setupPageLoadListeners();
         
-        // Add some interactive text effects
+
         this.animateText();
     }
     
@@ -33,15 +31,13 @@ class CreativeLoader {
             setTimeout(() => {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                
-                // Random size and position
+               
                 const size = Math.random() * 6 + 2;
                 particle.style.width = size + 'px';
                 particle.style.height = size + 'px';
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = Math.random() * 100 + '%';
                 
-                // Random animation delay and duration
                 particle.style.animationDelay = Math.random() * 3 + 's';
                 particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
                 
@@ -85,7 +81,7 @@ class CreativeLoader {
     }
     
     setupPageLoadListeners() {
-        // Ensure minimum loading time for effect
+
         const minLoadTime = 3000;
         const startTime = Date.now();
         
@@ -124,10 +120,9 @@ class CreativeLoader {
         if (this.isLoaded) return;
         this.isLoaded = true;
         
-        // Start exit animations
+  
         this.loader.classList.add('fade-out');
         
-        // Animate particles out
         this.particles.forEach((particle, index) => {
             setTimeout(() => {
                 particle.style.animation = 'float 0.5s ease-out forwards';
@@ -147,12 +142,12 @@ class CreativeLoader {
     }
     
     showMainContent() {
-        // Reveal main content with stagger animation
+
         if (this.mainContent) {
             this.mainContent.classList.add('show');
         }
         
-        // Animate feature cards or any elements with class 'animate-in'
+ 
         const animateElements = document.querySelectorAll('.animate-in, .feature-card');
         animateElements.forEach((element, index) => {
             setTimeout(() => {
@@ -167,7 +162,7 @@ class CreativeLoader {
             }, index * 200);
         });
         
-        // Add scroll reveal effect
+        
         this.setupScrollAnimations();
     }
     
@@ -191,12 +186,12 @@ class CreativeLoader {
     }
 }
 
-// Initialize loader when DOM is ready
+
 document.addEventListener('DOMContentLoaded', () => {
     new CreativeLoader();
 });
 
-// Add mouse interactivity to loader circles
+
 document.addEventListener('mousemove', (e) => {
     const loader = document.querySelector('.loader');
     if (loader && loader.style.display !== 'none') {
