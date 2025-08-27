@@ -301,22 +301,6 @@ a {
   }
 }
 
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: auto;
-  pointer-events: none;
-  z-index: 200; /* Above all elements */
-}
-
-@media (max-width: 768px) {
-  canvas {
-    display: none;
-  }
-}
-
 .container {
   max-width: 1440px;
   height: 100vh;
@@ -1012,6 +996,85 @@ the about us section
   transform-style: preserve-3d;
 }
 
+.service-box::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(206, 206, 206, 0.4),
+    rgba(255, 255, 255, 0.6),
+    rgba(198, 198, 198, 0.4),
+    transparent
+  );
+  border-radius: var(--radius-10);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.service-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.service-box:hover::before {
+  opacity: 1;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+.service-box:hover::after {
+  left: 100%;
+}
+
+.service-box:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3),
+    0 0 60px rgba(255, 255, 255, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+@keyframes glowPulse {
+  0% {
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(211, 211, 211, 0.3),
+      rgba(255, 255, 255, 0.5),
+      rgba(207, 207, 207, 0.3),
+      transparent
+    );
+  }
+  100% {
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(211, 211, 211, 0.3),
+      rgba(255, 255, 255, 0.5),
+      rgba(207, 207, 207, 0.3),
+      transparent
+    );
+  }
+}
+
 .service-box img {
   margin: 6px 0;
 }
@@ -1471,6 +1534,7 @@ start of why us section
   margin-top: 30px;
 }
 
+/* Add this to your existing .num-box CSS */
 .num-box {
   position: relative;
   width: 300px;
@@ -1480,6 +1544,89 @@ start of why us section
   border: 1.5px solid var(--glass-border);
   backdrop-filter: blur(6px);
   border-radius: var(--radius-10);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.num-box::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  border-radius: var(--radius-10);
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.num-box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.num-box:hover::before {
+  opacity: 1;
+  animation: glowPulse 2s ease-in-out infinite alternate;
+}
+
+.num-box:hover::after {
+  left: 100%;
+}
+
+.num-box:hover {
+  box-shadow: 0 0 30px rgba(211, 211, 211, 0.3),
+    0 0 60px rgba(211, 211, 211, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.1);
+  border-color: rgba(211, 211, 211, 0.6);
+  transform: translateY(-5px);
+}
+
+@keyframes glowPulse {
+  0% {
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(211, 211, 211, 0.3),
+      rgba(255, 255, 255, 0.5),
+      rgba(207, 207, 207, 0.3),
+      transparent
+    );
+  }
+  100% {
+    background: linear-gradient(
+      45deg,
+      transparent,
+      rgba(211, 211, 211, 0.3),
+      rgba(255, 255, 255, 0.5),
+      rgba(207, 207, 207, 0.3),
+      transparent
+    );
+  }
 }
 
 .num-circle-1 {
