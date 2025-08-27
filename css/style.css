@@ -5,20 +5,21 @@
 }
 
 :root {
-  /* --accent-color: #001bab; */
-  --accent-color: #111111;
+  --accent-color: #001bab;
+  /* --accent-color: #111111; */
   --black-color: #111111;
   --white-color: #f9fafb;
 
   --glass-border: rgba(255, 255, 255, 0.872);
 
-  /* --gradient-blue: linear-gradient(to right, #001bab, #000b45);
-  --gradient-blue-right: linear-gradient(to left, #001bab, #000b45); */
+  --gradient-blue: linear-gradient(to right, #001bab, #000b45);
+  --gradient-blue-right: linear-gradient(to left, #001bab, #000b45);
 
-  --gradient-blue: linear-gradient(to right, #9b9b9b, #111111);
-  --gradient-blue-right: linear-gradient(to left, #9b9b9b, #111111);
+  /* --gradient-blue: linear-gradient(to right, #9b9b9b, #111111);
+  --gradient-blue-right: linear-gradient(to left, #9b9b9b, #111111); */
 
-  --accent2-color: #9b9b9b;
+  /* --accent2-color: #9b9b9b; */
+  --accent2-color: #6476dd;
 
   --font-bold: 700;
   --font-ultrabold: 800;
@@ -296,7 +297,7 @@ nav a.active {
 }
 
 .header-buttons button.active:hover {
-  box-shadow: 0 0 45px 1px var(--accent2-color), 0 0 25px 10px;
+  /* box-shadow: 0 0 45px 1px var(--accent2-color), 0 0 25px 10px; */
   background: var(--gradient-blue-right);
 }
 
@@ -469,7 +470,7 @@ the about us section
 .circle {
   position: absolute;
   z-index: -1;
-  margin: 40%;
+  margin: 50%;
   padding-top: 200px;
 }
 
@@ -1207,7 +1208,7 @@ start of why us section
   align-items: center;
   justify-content: center;
   gap: 30px;
-  background: var(--gradient-blue);
+  background: var(--accent-color);
   height: auto;
   border-radius: var(--radius-10);
   padding: 40px 30px;
@@ -1720,8 +1721,9 @@ section
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-blue);
+  background: var(--accent-color);
   padding: 100px 30px;
+  margin-top: 50px;
 }
 
 .footer-content {
@@ -1792,7 +1794,7 @@ section
 
 .footer-item p a {
   font-size: var(--font-size-small);
-  color: var(--black-color);
+  color: var(--white-color);
 }
 
 .footer-item .img-1 {
@@ -1803,6 +1805,7 @@ section
 
 .footer-item a svg {
   width: 50%;
+  color: var(--white-color);
 }
 
 .img-2 {
@@ -1827,10 +1830,15 @@ section
 }
 
 .copyright {
-  text-align: center;
   color: var(--white-color);
   margin-top: 30px;
   line-height: var(--line-height-1);
+}
+
+@media screen and (max-width: 970px) {
+  .footer-span {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -1868,6 +1876,6 @@ section
   }
 
   .footer-item p a {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
