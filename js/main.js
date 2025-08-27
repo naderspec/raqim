@@ -232,6 +232,209 @@ navLinksTwo.forEach(link => {
 
 // mouse 
 
+
+
+        const canvas = document.querySelector('.cursor-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size to full viewport
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        // Cursor properties
+        const cursor = {
+            x: window.innerWidth / 2,
+            y: window.innerHeight / 2,
+            targetX: window.innerWidth / 2,
+            targetY: window.innerHeight / 2,
+            size: 20,
+            targetSize: 20,
+            opacity: 0
+        };
+        
+        // Mouse movement tracking
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let isMoving = false;
+        let moveTimeout;
+        
+        // Track mouse movement
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.targetX = mouseX;
+            cursor.targetY = mouseY;
+            cursor.opacity = 1;
+            isMoving = true;
+            
+            clearTimeout(moveTimeout);
+            moveTimeout = setTimeout(() => {
+                isMoving = false;
+            }, 100);
+        });
+        
+        // Handle mouse enter/leave
+        document.addEventListener('mouseenter', () => {
+            cursor.opacity = 1;
+        });
+        
+        document.addEventListener('mouseleave', () => {
+            cursor.opacity = 0;
+        });
+        
+        // Handle hover effects
+        const hoverElements = document.querySelectorAll('.btn, a, button');
+        hoverElements.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.targetSize = 35;
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.targetSize = 20;
+            });
+        });
+        
+        // Animation function
+        function animate() {
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Smooth cursor movement with easing
+            const easing = 0.15;
+            cursor.x += (cursor.targetX - cursor.x) * easing;
+            cursor.y += (cursor.targetY - cursor.y) * easing;
+            cursor.size += (cursor.targetSize - cursor.size) * easing;
+            
+            if (cursor.opacity > 0) {
+                // Create gradient for the circle
+                const gradient = ctx.createLinearGradient(
+                    cursor.x - cursor.size, 
+                    cursor.y - cursor.size, 
+                    cursor.x + cursor.size, 
+                    cursor.y + cursor.size
+                );
+                
+                // Dynamic colors based on movement
+                const hue = (Date.now() * 0.1) % 360;
+                const saturation = isMoving ? 70 : 50;
+                const lightness = isMoving ? 60 : 45;
+                
+                gradient.addColorStop(0, `hsla(${hue}, ${saturation}%, ${lightness}%, ${cursor.opacity * 0.8})`);
+                gradient.addColorStop(0.5, `hsla(${(hue + 60) % 360}, ${saturation}%, ${lightness}%, ${cursor.opacity * 0.6})`);
+                gradient.addColorStop(1, `hsla(${(hue + 120) % 360}, ${saturation}%, ${lightness}%, ${cursor.opacity * 0.4})`);
+                
+                // Draw outer glow
+                ctx.save();
+                ctx.globalCompositeOperation = 'screen';
+                ctx.beginPath();
+                ctx.arc(cursor.x, cursor.y, cursor.size + 10, 0, Math.PI * 2);
+                const glowGradient = ctx.createRadialGradient(
+                    cursor.x, cursor.y, 0,
+                    cursor.x, cursor.y, cursor.size + 10
+                );
+                glowGradient.addColorStop(0, `hsla(${hue}, 70%, 70%, ${cursor.opacity * 0.3})`);
+                glowGradient.addColorStop(1, `hsla(${hue}, 70%, 70%, 0)`);
+                ctx.fillStyle = glowGradient;
+                ctx.fill();
+                ctx.restore();
+                
+                // Draw main circle with linear gradient
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(cursor.x, cursor.y, cursor.size, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Add inner ring
+                ctx.beginPath();
+                ctx.arc(cursor.x, cursor.y, cursor.size * 0.7, 0, Math.PI * 2);
+                ctx.strokeStyle = `hsla(${(hue + 180) % 360}, 80%, 80%, ${cursor.opacity * 0.6})`;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Add center dot
+                ctx.beginPath();
+                ctx.arc(cursor.x, cursor.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(0, 0%, 100%, ${cursor.opacity * 0.9})`;
+                ctx.fill();
+                
+                ctx.restore();
+                
+                // Add trailing particles when moving
+                if (isMoving) {
+                    for (let i = 0; i < 3; i++) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = cursor.size + Math.random() * 20;
+                        const particleX = cursor.x + Math.cos(angle) * distance;
+                        const particleY = cursor.y + Math.sin(angle) * distance;
+                        
+                        ctx.save();
+                        ctx.globalAlpha = cursor.opacity * 0.3 * Math.random();
+                        ctx.beginPath();
+                        ctx.arc(particleX, particleY, Math.random() * 3, 0, Math.PI * 2);
+                        ctx.fillStyle = `hsl(${(hue + Math.random() * 60) % 360}, 70%, 70%)`;
+                        ctx.fill();
+                        ctx.restore();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animate);
+        }
+        
+        // Start animation
+        animate();
+        
+        // Add some interactive elements
+        document.addEventListener('click', (e) => {
+            // Create click ripple effect
+            const ripples = [];
+            for (let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                const ripple = {
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: Math.cos(angle) * 5,
+                    vy: Math.sin(angle) * 5,
+                    life: 30,
+                    maxLife: 30
+                };
+                ripples.push(ripple);
+            }
+            
+            function animateRipples() {
+                ctx.save();
+                ripples.forEach((ripple, index) => {
+                    ripple.x += ripple.vx;
+                    ripple.y += ripple.vy;
+                    ripple.life--;
+                    
+                    const alpha = ripple.life / ripple.maxLife;
+                    ctx.globalAlpha = alpha * 0.7;
+                    ctx.beginPath();
+                    ctx.arc(ripple.x, ripple.y, 3, 0, Math.PI * 2);
+                    ctx.fillStyle = `hsl(${(Date.now() * 0.1) % 360}, 70%, 70%)`;
+                    ctx.fill();
+                    
+                    if (ripple.life <= 0) {
+                        ripples.splice(index, 1);
+                    }
+                });
+                ctx.restore();
+                
+                if (ripples.length > 0) {
+                    requestAnimationFrame(animateRipples);
+                }
+            }
+            
+            animateRipples();
+        });
+
 // const canvas = document.querySelector("canvas");
 // const ctx = canvas.getContext('2d');
 
