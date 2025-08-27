@@ -237,7 +237,7 @@ navLinksTwo.forEach(link => {
         const canvas = document.querySelector('.cursor-canvas');
         const ctx = canvas.getContext('2d');
         
-        // Set canvas size to full viewport
+
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
@@ -246,7 +246,7 @@ navLinksTwo.forEach(link => {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
         
-        // Cursor properties
+
         const cursor = {
             x: window.innerWidth / 2,
             y: window.innerHeight / 2,
@@ -257,13 +257,13 @@ navLinksTwo.forEach(link => {
             opacity: 0
         };
         
-        // Mouse movement tracking
+
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
         let isMoving = false;
         let moveTimeout;
         
-        // Track mouse movement
+
         document.addEventListener('mousemove', (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
@@ -278,7 +278,7 @@ navLinksTwo.forEach(link => {
             }, 100);
         });
         
-        // Handle mouse enter/leave
+
         document.addEventListener('mouseenter', () => {
             cursor.opacity = 1;
         });
@@ -287,7 +287,7 @@ navLinksTwo.forEach(link => {
             cursor.opacity = 0;
         });
         
-        // Handle hover effects
+
         const hoverElements = document.querySelectorAll('.btn, a, button');
         hoverElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
@@ -299,19 +299,19 @@ navLinksTwo.forEach(link => {
             });
         });
         
-        // Animation function
+
         function animate() {
-            // Clear canvas
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Smooth cursor movement with easing
+
             const easing = 0.15;
             cursor.x += (cursor.targetX - cursor.x) * easing;
             cursor.y += (cursor.targetY - cursor.y) * easing;
             cursor.size += (cursor.targetSize - cursor.size) * easing;
             
             if (cursor.opacity > 0) {
-                // Create gradient for the circle
+
                 const gradient = ctx.createLinearGradient(
                     cursor.x - cursor.size, 
                     cursor.y - cursor.size, 
@@ -319,7 +319,7 @@ navLinksTwo.forEach(link => {
                     cursor.y + cursor.size
                 );
                 
-                // Dynamic colors based on movement
+
                 const hue = (Date.now() * 0.1) % 360;
                 const saturation = isMoving ? 70 : 50;
                 const lightness = isMoving ? 60 : 45;
@@ -328,7 +328,7 @@ navLinksTwo.forEach(link => {
                 gradient.addColorStop(0.5, `hsla(${(hue + 60) % 360}, ${saturation}%, ${lightness}%, ${cursor.opacity * 0.6})`);
                 gradient.addColorStop(1, `hsla(${(hue + 120) % 360}, ${saturation}%, ${lightness}%, ${cursor.opacity * 0.4})`);
                 
-                // Draw outer glow
+
                 ctx.save();
                 ctx.globalCompositeOperation = 'screen';
                 ctx.beginPath();
@@ -343,21 +343,21 @@ navLinksTwo.forEach(link => {
                 ctx.fill();
                 ctx.restore();
                 
-                // Draw main circle with linear gradient
+
                 ctx.save();
                 ctx.beginPath();
                 ctx.arc(cursor.x, cursor.y, cursor.size, 0, Math.PI * 2);
                 ctx.fillStyle = gradient;
                 ctx.fill();
                 
-                // Add inner ring
+ 
                 ctx.beginPath();
                 ctx.arc(cursor.x, cursor.y, cursor.size * 0.7, 0, Math.PI * 2);
                 ctx.strokeStyle = `hsla(${(hue + 180) % 360}, 80%, 80%, ${cursor.opacity * 0.6})`;
                 ctx.lineWidth = 2;
                 ctx.stroke();
                 
-                // Add center dot
+
                 ctx.beginPath();
                 ctx.arc(cursor.x, cursor.y, 2, 0, Math.PI * 2);
                 ctx.fillStyle = `hsla(0, 0%, 100%, ${cursor.opacity * 0.9})`;
@@ -365,7 +365,7 @@ navLinksTwo.forEach(link => {
                 
                 ctx.restore();
                 
-                // Add trailing particles when moving
+
                 if (isMoving) {
                     for (let i = 0; i < 3; i++) {
                         const angle = Math.random() * Math.PI * 2;
@@ -387,12 +387,12 @@ navLinksTwo.forEach(link => {
             requestAnimationFrame(animate);
         }
         
-        // Start animation
+
         animate();
         
-        // Add some interactive elements
+
         document.addEventListener('click', (e) => {
-            // Create click ripple effect
+
             const ripples = [];
             for (let i = 0; i < 8; i++) {
                 const angle = (i / 8) * Math.PI * 2;
