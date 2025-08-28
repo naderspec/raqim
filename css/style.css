@@ -724,7 +724,7 @@ the about us section
   align-items: center;
 }
 
-.about-title h1 {
+.about-title h2 {
   font-size: var(--font-size-36);
   font-weight: bold;
   margin-right: 15px;
@@ -742,6 +742,16 @@ the about us section
 .about-content-p p {
   font-size: var(--font-size-medium);
   line-height: var(--line-height-1);
+}
+
+.about-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-image img {
+  object-fit: cover;
+  border-radius: var(--radius-10);
 }
 
 @media screen and (max-width: 1260px) {
@@ -809,7 +819,7 @@ the about us section
     gap: 15px;
   }
 
-  .about-title h1 {
+  .about-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -845,7 +855,7 @@ the about us section
     gap: 15px;
   }
 
-  .about-title h1 {
+  .about-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -881,7 +891,7 @@ the about us section
     gap: 15px;
   }
 
-  .about-title h1 {
+  .about-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -951,7 +961,7 @@ the about us section
   align-items: center;
 }
 
-.service-title h1 {
+.service-title h2 {
   font-size: var(--font-size-medium);
   font-weight: bold;
   margin-right: 15px;
@@ -1120,7 +1130,7 @@ the about us section
     font-size: 14px;
   }
 
-  .service-title h1 {
+  .service-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
     margin-right: 15px;
@@ -1158,7 +1168,7 @@ the about us section
     padding: 50px 0;
   }
 
-  .service-title h1 {
+  .service-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
     margin-right: 15px;
@@ -1213,7 +1223,7 @@ the about us section
     gap: 10px;
   }
 
-  .service-title h1 {
+  .service-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -1293,7 +1303,7 @@ the about us section
     gap: 10px;
   }
 
-  .service-title h1 {
+  .service-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -1369,7 +1379,7 @@ the about us section
     gap: 10px;
   }
 
-  .service-title h1 {
+  .service-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -1437,7 +1447,7 @@ the about us section
     gap: 10px;
   }
 
-  .service-title h1 {
+  .service-title h2 {
     font-size: var(--font-size-medium);
     font-weight: bold;
   }
@@ -1510,7 +1520,7 @@ start of why us section
   align-items: flex-end;
 }
 
-.why-us-text h1 {
+.why-us-text h2 {
   font-size: var(--font-size-medium);
   font-weight: bold;
   margin-right: 15px;
@@ -1887,7 +1897,7 @@ section
   align-items: flex-end;
 }
 
-.portfolio-text h1 {
+.portfolio-text h2 {
   font-size: var(--font-size-medium);
   font-weight: bold;
   margin-right: 15px;
@@ -1978,7 +1988,7 @@ section
   align-items: flex-end;
 }
 
-.testimonial-text h1 {
+.testimonial-text h2 {
   font-size: var(--font-size-medium);
   color: var(--black-color);
   margin-right: 15px;
@@ -2076,7 +2086,7 @@ section
   gap: 30px;
 }
 
-.cta-content h1 {
+.cta-content h2 {
   font-size: var(--font-size-medium);
   font-weight: bold;
 }
@@ -2333,6 +2343,6 @@ section
   }
 
   .footer-item p a {
-    font-size: 15px;
+    font-size: 17px;
   }
 }
