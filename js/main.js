@@ -1,216 +1,170 @@
 
-class CreativeLoader {
-    constructor() {
-        this.loader = document.querySelector('.loader');
-        this.mainContent = document.querySelector('.main-content');
-        this.progressBar = document.querySelector('.progress-bar');
-        this.loaderText = document.querySelector('.loader-text');
-        this.particles = [];
-        this.isLoaded = false;
-        
-        this.init();
-    }
-    
-    init() {
 
-        this.createParticles();
-        
-
-        this.simulateLoading();
-
-        this.setupPageLoadListeners();
-        
-
-        this.animateText();
-    }
-    
-    createParticles() {
-        const particleCount = 15;
-        
-        for (let i = 0; i < particleCount; i++) {
-            setTimeout(() => {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-               
-                const size = Math.random() * 6 + 2;
-                particle.style.width = size + 'px';
-                particle.style.height = size + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
+class CreativeLogoLoader {
+            constructor() {
+                this.loader = document.querySelector('.loader');
+                this.mainContent = document.querySelector('.main-content');
+                this.logoContainer = document.querySelector('.logo-container');
+                this.isLoaded = false;
                 
-                particle.style.animationDelay = Math.random() * 3 + 's';
-                particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                
-                this.loader.appendChild(particle);
-                this.particles.push(particle);
-            }, i * 200);
-        }
-    }
-    
-    simulateLoading() {
-        const loadingSteps = [
-            { text: 'Loading', delay: 0 },
-            { text: 'Initializing', delay: 1000 },
-            { text: 'Loading Assets', delay: 2000 },
-            { text: 'Almost Ready', delay: 2800 },
-            { text: 'Complete', delay: 3500 }
-        ];
-        
-        loadingSteps.forEach((step, index) => {
-            setTimeout(() => {
-                this.updateLoadingText(step.text);
-                
-                if (index === loadingSteps.length - 1) {
-                    setTimeout(() => {
-                        this.hideLoader();
-                    }, 500);
-                }
-            }, step.delay);
-        });
-    }
-    
-    updateLoadingText(text) {
-        this.loaderText.style.transform = 'translateY(-10px)';
-        this.loaderText.style.opacity = '0';
-        
-        setTimeout(() => {
-            this.loaderText.textContent = text;
-            this.loaderText.style.transform = 'translateY(0)';
-            this.loaderText.style.opacity = '1';
-        }, 200);
-    }
-    
-    setupPageLoadListeners() {
-
-        const minLoadTime = 3000;
-        const startTime = Date.now();
-        
-        const checkComplete = () => {
-            const elapsed = Date.now() - startTime;
-            const remaining = minLoadTime - elapsed;
+                this.init();
+            }
             
-            if (remaining > 0) {
-                setTimeout(() => {
-                    if (document.readyState === 'complete' && !this.isLoaded) {
-                        this.hideLoader();
-                    }
-                }, remaining);
-            } else {
-                if (document.readyState === 'complete' && !this.isLoaded) {
-                    this.hideLoader();
+            init() {
+                this.createParticles();
+                this.createFloatingElements();
+                this.simulateLoading();
+                this.setupPageLoadListeners();
+                this.addMouseInteraction();
+            }
+            
+            createParticles() {
+                const particleCount = 20;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        
+
+                        const angle = (i / particleCount) * Math.PI * 2;
+                        const radius = 80 + Math.random() * 40;
+                        const x = Math.cos(angle) * radius;
+                        const y = Math.sin(angle) * radius;
+                        
+                        particle.style.left = `calc(50% + ${x}px)`;
+                        particle.style.top = `calc(50% + ${y}px)`;
+                        particle.style.animationDelay = Math.random() * 3 + 's';
+                        particle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                        
+                        this.logoContainer.appendChild(particle);
+                    }, i * 100);
                 }
             }
-        };
-        
-        if (document.readyState === 'complete') {
-            checkComplete();
-        } else {
-            window.addEventListener('load', checkComplete);
-        }
-    }
-    
-    animateText() {
-        const letters = this.loaderText.textContent.split('');
-        this.loaderText.innerHTML = letters.map((letter, index) => 
-            `<span style="display: inline-block; animation-delay: ${index * 0.1}s; animation: letterPulse 2s ease-in-out infinite;">${letter}</span>`
-        ).join('');
-    }
-    
-    hideLoader() {
-        if (this.isLoaded) return;
-        this.isLoaded = true;
-        
-  
-        this.loader.classList.add('fade-out');
-        
-        this.particles.forEach((particle, index) => {
-            setTimeout(() => {
-                particle.style.animation = 'float 0.5s ease-out forwards';
-                particle.style.transform = 'translateY(-100px) scale(0)';
-                particle.style.opacity = '0';
-            }, index * 50);
-        });
-        
-        setTimeout(() => {
-            this.loader.classList.add('slide-up');
-        }, 600);
-        
-        setTimeout(() => {
-            this.loader.style.display = 'none';
-            this.showMainContent();
-        }, 1400);
-    }
-    
-    showMainContent() {
+            
+            createFloatingElements() {
+                const elementCount = 8;
+                
+                for (let i = 0; i < elementCount; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    
+                    const angle = (i / elementCount) * Math.PI * 2;
+                    const radius = 120 + Math.random() * 60;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    
+                    element.style.left = `calc(50% + ${x}px)`;
+                    element.style.top = `calc(50% + ${y}px)`;
+                    element.style.animationDelay = Math.random() * 4 + 's';
+                    
+                    this.logoContainer.appendChild(element);
+                }
+            }
+            
+            simulateLoading() {
 
-        if (this.mainContent) {
-            this.mainContent.classList.add('show');
-        }
-        
- 
-        const animateElements = document.querySelectorAll('.animate-in, .feature-card');
-        animateElements.forEach((element, index) => {
-            setTimeout(() => {
-                element.style.opacity = '0';
-                element.style.transform = 'translateY(30px)';
-                element.style.transition = 'all 0.6s ease';
+                setTimeout(() => {
+                    this.hideLoader();
+                }, 5500);
+            }
+            
+            setupPageLoadListeners() {
+                const minLoadTime = 5500;
+                const startTime = Date.now();
+                
+                const checkComplete = () => {
+                    const elapsed = Date.now() - startTime;
+                    const remaining = minLoadTime - elapsed;
+                    
+                    if (remaining > 0) {
+                        setTimeout(() => {
+                            if (document.readyState === 'complete' && !this.isLoaded) {
+                                this.hideLoader();
+                            }
+                        }, remaining);
+                    } else {
+                        if (document.readyState === 'complete' && !this.isLoaded) {
+                            this.hideLoader();
+                        }
+                    }
+                };
+                
+                if (document.readyState === 'complete') {
+                    checkComplete();
+                } else {
+                    window.addEventListener('load', checkComplete);
+                }
+            }
+            
+            addMouseInteraction() {
+                document.addEventListener('mousemove', (e) => {
+                    if (this.loader.style.display === 'none') return;
+                    
+                    const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+                    const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+                    
+                    const logo = document.querySelector('.animated-logo');
+                    const rings = document.querySelectorAll('.glow-ring');
+                    
+                    if (logo) {
+                        logo.style.transform += ` translate(${mouseX * 10}px, ${mouseY * 10}px)`;
+                    }
+                    
+                    rings.forEach((ring, index) => {
+                        const intensity = (index + 1) * 5;
+                        ring.style.transform = `translate(${mouseX * intensity}px, ${mouseY * intensity}px)`;
+                    });
+                });
+            }
+            
+            hideLoader() {
+                if (this.isLoaded) return;
+                this.isLoaded = true;
+                
+
+                this.loader.classList.add('fade-out');
+                
+
+                const particles = document.querySelectorAll('.particle');
+                particles.forEach((particle, index) => {
+                    setTimeout(() => {
+                        particle.style.animation = 'floatParticle 0.5s ease-out forwards';
+                        particle.style.transform = 'translateY(-100px) scale(0)';
+                        particle.style.opacity = '0';
+                    }, index * 30);
+                });
+                
+
+                const floatingElements = document.querySelectorAll('.floating-element');
+                floatingElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.style.transform = 'scale(0) rotate(360deg)';
+                        element.style.opacity = '0';
+                    }, index * 50);
+                });
                 
                 setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.transform = 'translateY(0)';
-                }, 100);
-            }, index * 200);
-        });
-        
-        
-        this.setupScrollAnimations();
-    }
-    
-    setupScrollAnimations() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'slideInUp 0.6s ease forwards';
+                    this.loader.classList.add('slide-up');
+                }, 800);
+                
+                setTimeout(() => {
+                    this.loader.style.display = 'none';
+                    this.showMainContent();
+                }, 2000);
+            }
+            
+            showMainContent() {
+                if (this.mainContent) {
+                    this.mainContent.classList.add('show');
                 }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.scroll-animate').forEach(element => {
-            observer.observe(element);
+            }
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new CreativeLogoLoader();
         });
-    }
-}
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    new CreativeLoader();
-});
-
-
-document.addEventListener('mousemove', (e) => {
-    const loader = document.querySelector('.loader');
-    if (loader && loader.style.display !== 'none') {
-        const circles = document.querySelectorAll('.circle');
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-        
-        circles.forEach((circle, index) => {
-            const speed = (index + 1) * 0.5;
-            const x = (mouseX - 0.5) * speed;
-            const y = (mouseY - 0.5) * speed;
-            const currentTransform = circle.style.transform || '';
-            const rotateMatch = currentTransform.match(/rotate\([^)]+\)/);
-            const rotate = rotateMatch ? rotateMatch[0] : 'rotate(0deg)';
-            circle.style.transform = `translate(${x}px, ${y}px) ${rotate}`;
-        });
-    }
-});
-
 
 // import anime from 'https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.es.js';
 // import { animate, utils, createDraggable, createSpring } from 'animejs';
