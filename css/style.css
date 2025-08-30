@@ -2280,6 +2280,12 @@ section
 .footer-item a svg {
   width: 50%;
   color: var(--accent-color);
+  transition: all 0.3s ease;
+}
+
+.footer-item a svg:hover {
+  filter: drop-shadow(17px 28px 2px black);
+  transform: translate(-2px, -5px);
 }
 
 .img-2 {
