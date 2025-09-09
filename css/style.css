@@ -1707,7 +1707,7 @@ start of why us section
   z-index: 0;
 }
 
-.num-box h1 {
+.num-box h2 {
   font-size: var(--font-size-64);
   color: var(--white-color);
 }

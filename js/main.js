@@ -428,7 +428,7 @@ function easeOutBounce(t) {
   }
 }
 
-const counters = document.querySelectorAll(".num-box h1");
+const counters = document.querySelectorAll(".num-box h2");
 
 counters.forEach(counter => {
   const target = parseInt(counter.innerText);
